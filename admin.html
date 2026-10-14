@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PotentialU Education — Private Enquiry Dashboard</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --gold-primary: #E5C158;
+      --gold-deep: #C8960C;
+      --gold-border: rgba(212, 175, 55, 0.25);
+      --bg-deep: #050914;
+      --bg-mid: #0A1128;
+      --bg-card: #0D1736;
+      --bg-hover: #13224E;
+      --text-white: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      
+      --badge-pending: #F59E0B;
+      --badge-contacted: #10B981;
+      --badge-archived: #6B7280;
+    }
+
+    body {
+      background: var(--bg-deep);
+      color: var(--text-white);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: var(--bg-mid);
+      border-bottom: 1px solid var(--gold-border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-inner {
+      max-width: 84rem;
+      margin: 0 auto;
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .brand-logo {
+      height: 2.2rem;
+      width: auto;
+      border-radius: 4px;
+      border: 1px solid var(--gold-border);
+    }
+    .brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--text-white);
+    }
+    .badge-admin {
+      background: rgba(229, 193, 88, 0.12);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-primary);
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.65rem;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+      border: 1px solid transparent;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-deep), var(--gold-primary));
+      color: var(--bg-deep);
+    }
+    .btn-gold:hover {
+      box-shadow: 0 4px 15px rgba(229,193,88,0.3);
+      transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--gold-border);
+      color: var(--text-white);
+    }
+    .btn-outline:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: var(--gold-primary);
+    }
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.4);
+      color: #F87171;
+    }
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.2);
+    }
+    .btn-sm {
+      padding: 0.35rem 0.85rem;
+      font-size: 0.75rem;
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      max-width: 84rem;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    /* Stats Overview */
+    .stats-row {
+      display: grid;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+    }
+    .stat-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* Controls Bar */
+    .controls-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1rem;
+      padding: 1.25rem 1.75rem;
+    }
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--gold-border);
+      border-radius: 9999px;
+      padding: 0.5rem 1.25rem;
+      min-width: 18rem;
+    }
+    .search-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text-white);
+      font-size: 0.85rem;
+      width: 100%;
+    }
+    .filter-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(5, 9, 20, 0.6);
+      padding: 0.35rem;
+      border-radius: 9999px;
+      border: 1px solid var(--gold-border);
+    }
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.45rem 1.15rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--gold-primary);
+      color: var(--bg-deep);
+    }
+
+    /* Enquiries Table / Cards */
+    .table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      background: rgba(5, 9, 20, 0.5);
+      padding: 1.25rem 1.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold-primary);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    td {
+      padding: 1.35rem 1.5rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      font-size: 0.875rem;
+      vertical-align: top;
+    }
+    tr:hover td {
+      background: var(--bg-hover);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: 'Space Mono', monospace;
+    }
+    .badge-Pending {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid var(--badge-pending);
+      color: var(--badge-pending);
+    }
+    .badge-Contacted {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--badge-contacted);
+      color: var(--badge-contacted);
+    }
+    .badge-Archived {
+      background: rgba(107, 114, 128, 0.15);
+      border: 1px solid var(--badge-archived);
+      color: var(--badge-archived);
+    }
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* Modal for Password Change / Message Details */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 9, 20, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-primary);
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 32rem;
+      padding: 2.25rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-close:hover { color: var(--gold-primary); }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+    .form-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+    .form-input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--gold-border);
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      color: var(--text-white);
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .form-input:focus {
+      border-color: var(--gold-primary);
+    }
+
+    /* Login gate when not authenticated */
+    #loginGate {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .login-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-primary);
+      border-radius: 1.5rem;
+      max-width: 28rem;
+      width: 100%;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7);
+      text-align: center;
+    }
+    .empty-state {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       LOGIN GATE
+       ========================================= -->
+  <div id="loginGate">
+    <div class="login-card">
+      <img src="assets/logo.jpg" alt="PotentialU" style="height:2.6rem;margin-bottom:1.5rem;border-radius:4px;" />
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;margin-bottom:0.5rem;">Private Admin Access</h2>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:2rem;">Enter your executive passcode to review partnership enquiries.</p>
+
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group" style="text-align:left;">
+          <label class="form-label">Passcode</label>
+          <input type="password" id="gatePass" class="form-input" placeholder="Enter password" required />
+          <span style="font-size:0.75rem;color:var(--text-dim);margin-top:0.35rem;">Default key: <code style="color:var(--gold-primary);">potentialu2026</code></span>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;margin-top:1rem;padding:0.85rem;">
+          Authenticate Dashboard
+        </button>
+      </form>
+      <div style="margin-top:1.5rem;">
+        <a href="index.html" style="font-size:0.8rem;color:var(--gold-primary);text-decoration:none;">← Return to Main Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       DASHBOARD MAIN INTERFACE
+       ========================================= -->
+  <div id="dashboardApp" style="display:none;min-height:100vh;flex-direction:column;">
+    <header>
+      <div class="header-inner">
+        <div class="brand-wrap">
+          <img src="assets/logo.jpg" alt="PotentialU Education" class="brand-logo" />
+          <div>
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+              <span class="brand-title">PotentialU Education</span>
+              <span class="badge-admin">Admin Portal</span>
+            </div>
+            <span style="font-size:0.75rem;color:var(--text-dim);">HQ: Guildford, UK · Registered Office: GU1 2UT</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <button onclick="openPasswordModal()" class="btn btn-outline btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Change Password
+          </button>
+          <a href="index.html" class="btn btn-outline btn-sm">
+            View Live Site
+          </a>
+          <button onclick="logout()" class="btn btn-danger btn-sm">
+            Sign Out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Metric Cards -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num" id="statTotal">0</div>
+          <div class="stat-label">Total Enquiries</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="color:var(--badge-pending);" id="statPending">0</div>
+          <div class="stat-label">Pending Review</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="color:var(--badge-contacted);" id="statContacted">0</div>
+          <div class="stat-label">Contacted / In Progress</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" style="color:var(--badge-archived);" id="statArchived">0</div>
+          <div class="stat-label">Archived</div>
+        </div>
+      </div>
+
+      <!-- Controls: Search & Status Filters -->
+      <div class="controls-bar">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search by institution, contact, country..." oninput="renderTable()" />
+        </div>
+
+        <div class="filter-tabs">
+          <button class="tab-btn active" onclick="setFilter('All', this)">All Enquiries</button>
+          <button class="tab-btn" onclick="setFilter('Pending', this)">Pending</button>
+          <button class="tab-btn" onclick="setFilter('Contacted', this)">Contacted</button>
+          <button class="tab-btn" onclick="setFilter('Archived', this)">Archived</button>
+        </div>
+
+        <div>
+          <button onclick="exportCSV()" class="btn btn-outline btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Enquiries Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Date / ID</th>
+              <th>Institution & Country</th>
+              <th>Contact Details</th>
+              <th>Interest / Track</th>
+              <th>Message</th>
+              <th>Status</th>
+              <th>Reply Tracking Actions</th>
+            </tr>
+          </thead>
+          <tbody id="enquiriesBody">
+            <!-- Rendered by JS -->
+          </tbody>
+        </table>
+        <div id="emptyState" class="empty-state" style="display:none;">
+          No enquiries found matching your query.
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- =========================================
+       PASSWORD CHANGE MODAL
+       ========================================= -->
+  <div id="passwordModal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closePasswordModal()">×</button>
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.35rem;margin-bottom:0.4rem;">Change Admin Password</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;">Update the security key used to access this management dashboard.</p>
+
+      <form onsubmit="handlePasswordChange(event)">
+        <div class="form-group">
+          <label class="form-label">Current Password</label>
+          <input type="password" id="curPass" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">New Password</label>
+          <input type="password" id="newPass" class="form-input" required minlength="6" />
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;margin-top:0.75rem;">
+          Update & Save Password
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================
+       MESSAGE DETAIL MODAL
+       ========================================= -->
+  <div id="detailModal" class="modal-overlay">
+    <div class="modal-box" style="max-width:38rem;">
+      <button class="modal-close" onclick="closeDetailModal()">×</button>
+      <span id="detailBadge" class="status-badge" style="margin-bottom:0.75rem;"></span>
+      <h3 id="detailInstitution" style="font-family:'Space Grotesk',sans-serif;font-size:1.4rem;color:var(--text-white);margin-bottom:0.25rem;"></h3>
+      <p id="detailContact" style="font-size:0.85rem;color:var(--gold-primary);margin-bottom:1.5rem;"></p>
+
+      <div style="background:rgba(255,255,255,0.03);border:1px solid var(--gold-border);border-radius:0.75rem;padding:1.25rem;margin-bottom:1.5rem;">
+        <label class="form-label" style="display:block;margin-bottom:0.5rem;">Enquiry Message Content</label>
+        <p id="detailMessage" style="font-size:0.92rem;line-height:1.7;color:var(--text-white);white-space:pre-wrap;"></p>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <a id="detailReplyLink" href="#" class="btn btn-gold btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          Reply via Email Client
+        </a>
+        <button onclick="closeDetailModal()" class="btn btn-outline btn-sm">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let activeFilter = 'All';
+
+    // Verify Authentication
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('pu_admin_auth') === 'true';
+      if (isAuth) {
+        document.getElementById('loginGate').style.display = 'none';
+        document.getElementById('dashboardApp').style.display = 'flex';
+        renderTable();
+      } else {
+        document.getElementById('loginGate').style.display = 'flex';
+        document.getElementById('dashboardApp').style.display = 'none';
+      }
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const entered = document.getElementById('gatePass').value;
+      const stored = localStorage.getItem('pu_admin_password') || 'potentialu2026';
+      if (entered === stored) {
+        sessionStorage.setItem('pu_admin_auth', 'true');
+        checkAuth();
+      } else {
+        alert('Invalid Passcode. Please try again.');
+      }
+    }
+
+    function logout() {
+      sessionStorage.removeItem('pu_admin_auth');
+      window.location.reload();
+    }
+
+    // Password Management
+    function openPasswordModal() {
+      document.getElementById('passwordModal').classList.add('open');
+    }
+    function closePasswordModal() {
+      document.getElementById('passwordModal').classList.remove('open');
+    }
+    function handlePasswordChange(e) {
+      e.preventDefault();
+      const cur = document.getElementById('curPass').value;
+      const newP = document.getElementById('newPass').value;
+      const stored = localStorage.getItem('pu_admin_password') || 'potentialu2026';
+
+      if (cur !== stored) {
+        alert('Current password does not match.');
+        return;
+      }
+      localStorage.setItem('pu_admin_password', newP);
+      alert('Password successfully updated!');
+      closePasswordModal();
+    }
+
+    // Data handling
+    function getEnquiries() {
+      return JSON.parse(localStorage.getItem('pu_enquiries') || '[]');
+    }
+
+    function saveEnquiries(data) {
+      localStorage.setItem('pu_enquiries', JSON.stringify(data));
+      renderTable();
+    }
+
+    function setFilter(filter, el) {
+      activeFilter = filter;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      el.classList.add('active');
+      renderTable();
+    }
+
+    // Reply tracking status updates
+    function setStatus(id, newStatus) {
+      const data = getEnquiries();
+      const item = data.find(x => x.id === id);
+      if (item) {
+        item.status = newStatus;
+        saveEnquiries(data);
+      }
+    }
+
+    function deleteEnquiry(id) {
+      if (confirm('Are you sure you want to delete this enquiry record?')) {
+        const data = getEnquiries().filter(x => x.id !== id);
+        saveEnquiries(data);
+      }
+    }
+
+    // Detail Modal
+    function viewDetail(id) {
+      const item = getEnquiries().find(x => x.id === id);
+      if (!item) return;
+
+      document.getElementById('detailInstitution').textContent = item.institution;
+      document.getElementById('detailContact').textContent = `${item.contactName} (${item.email}) · ${item.country}`;
+      document.getElementById('detailMessage').textContent = item.message;
+      
+      const badge = document.getElementById('detailBadge');
+      badge.textContent = item.status;
+      badge.className = `status-badge badge-${item.status}`;
+
+      const reply = document.getElementById('detailReplyLink');
+      reply.href = `mailto:${item.email}?subject=PotentialU%20Education%20Partnership%20Discussion%20-%20${encodeURIComponent(item.institution)}&body=Dear%20${encodeURIComponent(item.contactName)},%0D%0A%0D%0AThank%20you%20for%20reaching%20out%20to%20PotentialU%20Education.%0D%0A%0D%0A`;
+
+      document.getElementById('detailModal').classList.add('open');
+    }
+
+    function closeDetailModal() {
+      document.getElementById('detailModal').classList.remove('open');
+    }
+
+    // Render Table
+    function renderTable() {
+      const all = getEnquiries();
+      const q = (document.getElementById('searchInput').value || '').toLowerCase();
+
+      // Update counters
+      document.getElementById('statTotal').textContent = all.length;
+      document.getElementById('statPending').textContent = all.filter(x => x.status === 'Pending').length;
+      document.getElementById('statContacted').textContent = all.filter(x => x.status === 'Contacted').length;
+      document.getElementById('statArchived').textContent = all.filter(x => x.status === 'Archived').length;
+
+      const filtered = all.filter(item => {
+        const matchesFilter = (activeFilter === 'All') || (item.status === activeFilter);
+        const matchesQuery = 
+          (item.institution || '').toLowerCase().includes(q) ||
+          (item.contactName || '').toLowerCase().includes(q) ||
+          (item.country || '').toLowerCase().includes(q) ||
+          (item.message || '').toLowerCase().includes(q);
+        return matchesFilter && matchesQuery;
+      });
+
+      const tbody = document.getElementById('enquiriesBody');
+      const empty = document.getElementById('emptyState');
+      tbody.innerHTML = '';
+
+      if (filtered.length === 0) {
+        empty.style.display = 'block';
+        return;
+      }
+      empty.style.display = 'none';
+
+      filtered.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>
+            <strong style="color:var(--text-white);display:block;">${item.id}</strong>
+            <span style="font-size:0.75rem;color:var(--text-dim);">${item.date}</span>
+          </td>
+          <td>
+            <strong style="color:var(--text-white);display:block;font-size:0.95rem;">${item.institution}</strong>
+            <span style="font-size:0.8rem;color:var(--gold-primary);">${item.country}</span>
+          </td>
+          <td>
+            <span style="display:block;font-weight:600;">${item.contactName}</span>
+            <a href="mailto:${item.email}" style="color:var(--text-muted);font-size:0.8rem;text-decoration:none;">${item.email}</a>
+          </td>
+          <td>
+            <span style="font-size:0.8rem;color:var(--text-sub);">${item.cohortType || 'General Institutional'}</span>
+          </td>
+          <td style="max-width:18rem;">
+            <p style="overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;color:var(--text-muted);font-size:0.85rem;">
+              ${item.message}
+            </p>
+            <button onclick="viewDetail('${item.id}')" style="background:none;border:none;color:var(--gold-primary);font-size:0.75rem;cursor:pointer;padding:0;margin-top:0.35rem;text-decoration:underline;">
+              View Full Message
+            </button>
+          </td>
+          <td>
+            <span class="status-badge badge-${item.status}">${item.status}</span>
+          </td>
+          <td>
+            <div class="action-group">
+              ${item.status !== 'Contacted' ? `
+                <button onclick="setStatus('${item.id}', 'Contacted')" class="btn btn-outline btn-sm" style="border-color:rgba(16,185,129,0.4);color:#10B981;" title="Mark as Contacted">
+                  ✓ Contacted
+                </button>
+              ` : `
+                <button onclick="setStatus('${item.id}', 'Pending')" class="btn btn-outline btn-sm" style="color:var(--badge-pending);" title="Re-open to Pending">
+                  ↺ Re-open
+                </button>
+              `}
+
+              ${item.status !== 'Archived' ? `
+                <button onclick="setStatus('${item.id}', 'Archived')" class="btn btn-outline btn-sm" style="color:var(--text-dim);" title="Move to Archive">
+                  📁 Archive
+                </button>
+              ` : `
+                <button onclick="setStatus('${item.id}', 'Pending')" class="btn btn-outline btn-sm" style="color:var(--gold-primary);" title="Restore">
+                  Unarchive
+                </button>
+              `}
+
+              <a href="mailto:${item.email}?subject=PotentialU%20Education%20Partnership%20-%20${encodeURIComponent(item.institution)}" class="btn btn-outline btn-sm" title="Send direct email">
+                ✉ Email
+              </a>
+              <button onclick="deleteEnquiry('${item.id}')" class="btn btn-danger btn-sm" title="Delete record">
+                ✕
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // CSV Export
+    function exportCSV() {
+      const data = getEnquiries();
+      if (!data.length) {
+        alert('No enquiries to export.');
+        return;
+      }
+      const headers = ['ID', 'Date', 'Institution', 'Contact Name', 'Email', 'Country', 'Partnership Track', 'Status', 'Message'];
+      const rows = data.map(d => [
+        `"${d.id}"`,
+        `"${d.date}"`,
+        `"${(d.institution || '').replace(/"/g, '""')}"`,
+        `"${(d.contactName || '').replace(/"/g, '""')}"`,
+        `"${d.email}"`,
+        `"${d.country}"`,
+        `"${(d.cohortType || '').replace(/"/g, '""')}"`,
+        `"${d.status}"`,
+        `"${(d.message || '').replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', `PotentialU_Enquiries_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Run Auth Check on Load
+    checkAuth();
+  </script>
+</body>
+</html>

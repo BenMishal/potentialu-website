@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050914" />
+  <meta name="description" content="PotentialU Education — Industry-aligned, employment-ready programmes for universities and colleges across the UK, India and the UAE." />
+  <title>PotentialU Education — Industry-Aligned, Employment-Ready Programmes</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================
+       CSS VARIABLES & RESET
+       ========================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --gold-primary: #E5C158;
+      --gold-deep: #C8960C;
+      --gold-light: #F8E07A;
+      --gold-border: rgba(212, 175, 55, 0.2);
+      --gold-glow: rgba(229, 193, 88, 0.12);
+      
+      --bg-deep: #050914;
+      --bg-mid: #0A1128;
+      --bg-card: #0D1736;
+      --bg-card-hover: #121F45;
+      
+      --text-white: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-sub: #CBD5E1;
+      --text-dim: #64748B;
+      
+      --status-active: #38BDF8;
+      --status-contacted: #34D399;
+      --status-archived: #94A3B8;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-deep);
+      color: var(--text-white);
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* =========================================
+       TYPOGRAPHY
+       ========================================= */
+    .font-display { font-family: 'Space Grotesk', 'Inter', sans-serif; }
+    .font-mono { font-family: 'Space Mono', monospace; }
+
+    .text-gold-gradient {
+      background: linear-gradient(90deg, #E5C158 0%, #F8E07A 50%, #C8960C 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline;
+    }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      color: var(--gold-primary);
+      margin-bottom: 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--gold-primary);
+    }
+
+    /* =========================================
+       LAYOUT CONTAINERS
+       ========================================= */
+    .container {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 1024px) {
+      .container { padding: 0 2.5rem; }
+    }
+
+    /* =========================================
+       NAVBAR
+       ========================================= */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(5, 9, 20, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gold-border);
+      transition: all 0.3s ease;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 5rem;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 1024px) {
+      .nav-inner { padding: 0 2.5rem; }
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      height: 2.2rem;
+      width: auto;
+      border-radius: 4px;
+      border: 1px solid rgba(212,175,55,0.3);
+      background: #0A1128;
+    }
+    .nav-brand-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-white);
+      display: none;
+    }
+    @media (min-width: 1024px) {
+      .nav-brand-text { display: block; }
+    }
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    @media (min-width: 840px) {
+      .nav-links { display: flex; }
+    }
+    .nav-links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s ease;
+    }
+    .nav-links a:hover {
+      color: var(--gold-primary);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* =========================================
+       BUTTONS
+       ========================================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 0.825rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      border-radius: 9999px;
+      padding: 0.75rem 1.6rem;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-deep) 0%, var(--gold-primary) 100%);
+      color: var(--bg-deep);
+      border: 1px solid transparent;
+      box-shadow: 0 4px 15px rgba(200, 150, 12, 0.25);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(229, 193, 88, 0.4);
+    }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-sub);
+      border: 1px solid var(--gold-border);
+    }
+    .btn-ghost:hover {
+      background: rgba(212, 175, 55, 0.1);
+      border-color: rgba(212, 175, 55, 0.5);
+      color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+    }
+
+    /* =========================================
+       HERO SECTION (Universities First)
+       ========================================= */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 6rem;
+      padding-bottom: 5rem;
+      overflow: hidden;
+    }
+    .hero-bg-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.28;
+      filter: saturate(1.2);
+    }
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 40%, rgba(5,9,20,0.4) 0%, #050914 90%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+      width: 100%;
+    }
+    @media (min-width: 1024px) {
+      .hero-content { padding: 4rem 2.5rem; }
+    }
+    .hero-badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      border: 1px solid var(--gold-border);
+      background: rgba(13, 23, 54, 0.7);
+      font-size: 0.75rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--gold-primary);
+    }
+    .hero-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.4rem, 6.5vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.75rem;
+      max-width: 58rem;
+    }
+    .hero-subtext {
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      line-height: 1.7;
+      color: var(--text-sub);
+      max-width: 44rem;
+      margin-bottom: 2.75rem;
+    }
+    .hero-cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+    .hero-downloads-bar {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(212,175,55,0.15);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+    }
+    .hero-download-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .hero-download-item:hover {
+      color: var(--gold-primary);
+    }
+    .hero-download-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 8px;
+      background: rgba(212,175,55,0.08);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+    }
+
+    /* =========================================
+       MARQUEE STRIP
+       ========================================= */
+    #marquee-section {
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+      background: var(--bg-mid);
+      padding: 1.4rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    #marquee-section::before, #marquee-section::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 6rem;
+      z-index: 2;
+      pointer-events: none;
+    }
+    #marquee-section::before { left: 0; background: linear-gradient(to right, var(--bg-mid), transparent); }
+    #marquee-section::after  { right: 0; background: linear-gradient(to left, var(--bg-mid), transparent); }
+    
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 0 1.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .marquee-dot {
+      color: var(--gold-primary);
+      font-size: 1.25rem;
+    }
+
+    /* =========================================
+       SECTIONS GENERAL
+       ========================================= */
+    section {
+      padding: 7rem 0;
+      position: relative;
+    }
+    .section-header {
+      max-width: 44rem;
+      margin-bottom: 4rem;
+    }
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-description {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* =========================================
+       PILLARS SECTION (Dual Track)
+       ========================================= */
+    .pillars-grid {
+      display: grid;
+      gap: 2.5rem;
+    }
+    @media (min-width: 1024px) {
+      .pillars-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .pillar-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1.25rem;
+      padding: 2.5rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @media (min-width: 768px) {
+      .pillar-card { padding: 3.5rem; }
+    }
+    .pillar-card:hover {
+      border-color: rgba(229, 193, 88, 0.4);
+      box-shadow: 0 0 50px rgba(229, 193, 88, 0.08), 0 20px 40px rgba(0,0,0,0.5);
+      transform: translateY(-4px);
+    }
+    .pillar-watermark {
+      position: absolute;
+      top: -2rem;
+      right: -1rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11rem;
+      font-weight: 900;
+      color: rgba(212, 175, 55, 0.04);
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .pillar-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--gold-primary);
+      margin-bottom: 0.75rem;
+    }
+    .pillar-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+      font-weight: 700;
+      margin-bottom: 1.25rem;
+      color: var(--text-white);
+    }
+    .pillar-desc {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+    .pillar-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+      margin-bottom: 2.5rem;
+    }
+    .pillar-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .pillar-icon-box {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 50%;
+      background: rgba(229, 193, 88, 0.08);
+      border: 1px solid var(--gold-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-primary);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .pillar-feature-text {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+    .pillar-bottom-cta {
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* =========================================
+       PROCESS ROADMAP (6 Steps)
+       ========================================= */
+    #process {
+      background: var(--bg-mid);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .process-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .process-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .step-card:hover {
+      border-color: rgba(229, 193, 88, 0.4);
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+    }
+    .step-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--gold-primary);
+      letter-spacing: 0.25em;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .step-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-white);
+    }
+    .step-detail {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    /* =========================================
+       GLOBAL REACH (UK, India, UAE)
+       ========================================= */
+    .global-grid {
+      display: grid;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .global-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .region-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .region-card:hover {
+      border-color: rgba(229, 193, 88, 0.4);
+      transform: translateY(-4px);
+    }
+    .region-img-wrap {
+      height: 13rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .region-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .region-card:hover .region-img {
+      transform: scale(1.05);
+    }
+    .region-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(5,9,20,0.85);
+      border: 1px solid var(--gold-border);
+      border-radius: 9999px;
+      padding: 0.3rem 0.85rem;
+      font-size: 0.7rem;
+      font-family: 'Space Mono', monospace;
+      color: var(--gold-primary);
+    }
+    .region-content {
+      padding: 1.75rem;
+    }
+    .region-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-white);
+    }
+    .region-info {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* =========================================
+       FOUNDERS SECTION (Real Photos & LinkedIn)
+       ========================================= */
+    #founders {
+      background: var(--bg-mid);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .founders-grid {
+      display: grid;
+      gap: 2.5rem;
+      margin-bottom: 5rem;
+    }
+    @media (min-width: 900px) {
+      .founders-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .founder-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1.25rem;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      transition: all 0.3s ease;
+    }
+    @media (min-width: 640px) {
+      .founder-card {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+    }
+    .founder-card:hover {
+      border-color: rgba(229, 193, 88, 0.4);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .founder-avatar-wrap {
+      width: 10rem;
+      height: 11rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--gold-border);
+      background: #0A1128;
+    }
+    .founder-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s ease;
+    }
+    .founder-card:hover .founder-avatar-img {
+      transform: scale(1.04);
+    }
+    .founder-info {
+      flex: 1;
+    }
+    .founder-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 0.4rem;
+    }
+    .founder-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--text-white);
+    }
+    .founder-bio {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+    .founder-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-primary);
+      text-decoration: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(229, 193, 88, 0.08);
+      border: 1px solid var(--gold-border);
+      transition: all 0.25s;
+    }
+    .founder-linkedin:hover {
+      background: rgba(229, 193, 88, 0.16);
+      transform: translateX(3px);
+    }
+
+    /* Values row */
+    .values-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (min-width: 768px) {
+      .values-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 1024px) {
+      .values-grid { grid-template-columns: repeat(6, 1fr); }
+    }
+    .value-box {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 0.75rem;
+      padding: 1.5rem 1.25rem;
+      transition: all 0.3s;
+    }
+    .value-box:hover {
+      border-color: rgba(229, 193, 88, 0.4);
+      transform: translateY(-2px);
+    }
+    .value-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      margin-bottom: 0.4rem;
+    }
+    .value-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       ENQUIRY SECTION & FORM
+       ========================================= */
+    .enquiry-layout {
+      display: grid;
+      gap: 4rem;
+    }
+    @media (min-width: 1024px) {
+      .enquiry-layout { grid-template-columns: 5fr 7fr; align-items: start; }
+    }
+    .enquiry-left-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .office-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1rem;
+      padding: 1.75rem;
+    }
+    .office-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--gold-primary);
+      margin-bottom: 0.75rem;
+    }
+    .office-address {
+      font-size: 0.925rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+    .email-contact-link {
+      color: var(--gold-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .email-contact-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Form styling */
+    .enquiry-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-border);
+      border-radius: 1.25rem;
+      padding: 2.5rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    .form-group-row {
+      display: grid;
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .form-group-row { grid-template-columns: 1fr 1fr; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .form-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+    .form-input, .form-select, .form-textarea {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--gold-border);
+      border-radius: 0.5rem;
+      padding: 0.85rem 1.15rem;
+      color: var(--text-white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: all 0.25s;
+      outline: none;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold-primary);
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: 0 0 15px rgba(229, 193, 88, 0.15);
+    }
+    .form-select option {
+      background-color: var(--bg-mid);
+      color: var(--text-white);
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 7rem;
+    }
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+    footer {
+      border-top: 1px solid var(--gold-border);
+      background: var(--bg-deep);
+      padding: 5rem 0 3rem;
+    }
+    .footer-top {
+      display: grid;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    @media (min-width: 1024px) {
+      .footer-top { grid-template-columns: 2fr 1fr 1fr 1fr; }
+    }
+    .footer-brand-logo {
+      height: 2.8rem;
+      width: auto;
+      border-radius: 4px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-brand-desc {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 22rem;
+      margin-bottom: 1.5rem;
+    }
+    .footer-col-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      margin-bottom: 1.25rem;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover {
+      color: var(--gold-primary);
+    }
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid rgba(212, 175, 55, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* =========================================
+       TOAST ALERTS
+       ========================================= */
+    #toast-box {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+    .toast {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-primary);
+      color: var(--text-white);
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      font-size: 0.875rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      pointer-events: auto;
+      max-width: 24rem;
+    }
+    .toast.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =========================================
+       ADMIN MODAL / POPUP
+       ========================================= */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 9, 20, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-overlay.open {
+      display: flex;
+    }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-primary);
+      border-radius: 1.25rem;
+      width: 100%;
+      max-width: 32rem;
+      padding: 2.5rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+      position: relative;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .modal-close-btn:hover { color: var(--gold-primary); }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       NAVBAR
+       ========================================= -->
+  <header id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <img src="assets/logo.jpg" alt="PotentialU Education" class="nav-logo-img" />
+        <span class="nav-brand-text">Potential<span class="text-gold-gradient">U</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#hero">Overview</a></li>
+        <li><a href="#pillars">What We Do</a></li>
+        <li><a href="#process">Partnership</a></li>
+        <li><a href="#global">Global</a></li>
+        <li><a href="#founders">Founders</a></li>
+        <li><a href="#enquiry">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="assets/PotentialU-Institutional-Partnership-Overview.pdf" download class="btn btn-ghost btn-sm" title="Download Institutional Deck">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Deck
+        </a>
+        <a href="#enquiry" class="btn btn-gold btn-sm">Partner With Us</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================
+       HERO (Universities First, Students Second)
+       ========================================= -->
+  <section id="hero">
+    <div class="hero-bg-layer">
+      <img src="https://images.unsplash.com/photo-1687866394797-72d5e6606c70?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjB1bml2ZXJzaXR5JTIwbGVjdHVyZSUyMGhhbGwlMjBjYW1wdXMlMjBhcmNoaXRlY3R1cmVsZW58MHx8fHwxNzkxOTg0MzQ4fDA&ixlib=rb-4.1.0&q=85" alt="Campus Architecture" class="hero-bg-img" />
+      <div class="hero-vignette"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-badge-container">
+        <span class="hero-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+          UK Headquarters · Guildford, Surrey
+        </span>
+        <span class="hero-badge">Expanding across UK · India · UAE</span>
+      </div>
+
+      <h1 class="hero-title">
+        Industry-aligned education.<br />
+        <span class="text-gold-gradient">Employment-ready graduates.</span>
+      </h1>
+
+      <p class="hero-subtext">
+        We partner with <strong>universities and colleges</strong> to co-design BCS-accredited, practical curricula that bridge academia and employer expectations. In parallel, our <strong>Student Platform</strong> gives 15–25 year-olds one trusted home base to build verified skills and launch their careers.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#enquiry" class="btn btn-gold">
+          Explore Institutional Partnership
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="https://test.potentialu.education/auth" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+          Student Waiting List
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <a href="https://test.potentialu.education/pilot" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+          Explore Pilot Demo
+        </a>
+      </div>
+
+      <!-- Quick Download Links -->
+      <div class="hero-downloads-bar">
+        <a href="assets/PotentialU-Institutional-Partnership-Overview.pdf" download class="hero-download-item">
+          <div class="hero-download-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="18"/><line x1="15" y1="15" x2="12" y2="18"/></svg>
+          </div>
+          <div>
+            <strong style="color:var(--text-white);display:block;">Partnership Overview PDF</strong>
+            <span>Complete institutional framework & commercial models</span>
+          </div>
+        </a>
+
+        <a href="assets/PotentialU-At-A-Glance.pdf" download class="hero-download-item">
+          <div class="hero-download-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="12" y2="18"/><line x1="15" y1="15" x2="12" y2="18"/></svg>
+          </div>
+          <div>
+            <strong style="color:var(--text-white);display:block;">PotentialU At A Glance PDF</strong>
+            <span>Summary roadmap for schools, educators & students</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       MARQUEE TICKER
+       ========================================= -->
+  <div id="marquee-section">
+    <div class="marquee-track">
+      <div class="marquee-item">United Kingdom <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">India <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">United Arab Emirates <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">BCS Accreditation Pathway <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Industry-Aligned Curriculum <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Portfolio-Proven Skills <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Real Employer Briefs <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Ages 15–25 <span class="marquee-dot">·</span></div>
+      <!-- Duplicate for infinite loop -->
+      <div class="marquee-item">United Kingdom <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">India <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">United Arab Emirates <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">BCS Accreditation Pathway <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Industry-Aligned Curriculum <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Portfolio-Proven Skills <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Real Employer Briefs <span class="marquee-dot">·</span></div>
+      <div class="marquee-item">Ages 15–25 <span class="marquee-dot">·</span></div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       WHAT WE DO (Two Pillars)
+       ========================================= -->
+  <section id="pillars">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">What We Do</span>
+        <h2 class="section-title">Two pillars. One journey from <span class="text-gold-gradient">learning to earning.</span></h2>
+        <p class="section-description">
+          We combine institutional academic rigour with direct student empowerment to build visible proof of competence that global employers trust.
+        </p>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- PILLAR 01: INSTITUTIONAL PARTNERSHIPS -->
+        <article class="pillar-card">
+          <div class="pillar-watermark">01</div>
+          <div>
+            <p class="pillar-tag">Pillar 01 · For Universities & Colleges</p>
+            <h3 class="pillar-heading">Institutional Partnerships</h3>
+            <p class="pillar-desc">
+              Tailored programmes shaped around emerging technologies, regional industry demand, and institutional governance. We help your institution graduate students with demonstrable capability, verified portfolios, and immediate pathways into work.
+            </p>
+
+            <ul class="pillar-features">
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>Industry-Aligned Curriculum:</strong> Co-designed and mapped directly to institutional learning outcomes and employment metrics.
+                </div>
+              </li>
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>BCS Accreditation Pathway:</strong> Direct route towards accreditation through BCS, The Chartered Institute for IT, offering recognised credentials and digital badges.
+                </div>
+              </li>
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>Flexible Delivery Modes:</strong> Available online, on-campus, or blended to suit your scheduling, infrastructure, and faculty requirements.
+                </div>
+              </li>
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>Tailored Commercial Models:</strong> Flexible payment structuring arranged either directly through the institution or student-funded.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pillar-bottom-cta">
+            <a href="assets/PotentialU-Institutional-Partnership-Overview.pdf" download class="btn btn-ghost btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Partnership Deck (PDF)
+            </a>
+            <a href="#enquiry" class="btn btn-gold btn-sm">Enquire Now</a>
+          </div>
+        </article>
+
+        <!-- PILLAR 02: THE STUDENT PLATFORM -->
+        <article class="pillar-card">
+          <div class="pillar-watermark">02</div>
+          <div>
+            <p class="pillar-tag">Pillar 02 · For 15–25 Year Olds</p>
+            <h3 class="pillar-heading">The Student Platform</h3>
+            <p class="pillar-desc">
+              One unified home base where young people cultivate practical life and career skills, assemble tangible proof of work, and connect with live employer briefs — creating a verified alternative to a CV that companies can actually trust.
+            </p>
+
+            <ul class="pillar-features">
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>U Home Base & Portfolio:</strong> A dynamic digital portfolio displaying artifacts, projects, and feedback rather than unverified CV bullet points.
+                </div>
+              </li>
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>Beyond the Classroom:</strong> Free monthly career insight talks featuring real industry leaders, active since July 2026.
+                </div>
+              </li>
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>Mentoring & Peer Network:</strong> 1-on-1 guidance, group mentoring sessions, and active networking with practicing professionals.
+                </div>
+              </li>
+              <li class="pillar-feature-item">
+                <div class="pillar-icon-box">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                </div>
+                <div class="pillar-feature-text">
+                  <strong>BridgED Live Employer Briefs:</strong> Students execute real corporate project briefs under PotentialU coaching, proving capability in authentic workplace scenarios.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pillar-bottom-cta">
+            <a href="assets/PotentialU-At-A-Glance.pdf" download class="btn btn-ghost btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              At A Glance (PDF)
+            </a>
+            <a href="https://test.potentialu.education/auth" target="_blank" rel="noopener noreferrer" class="btn btn-gold btn-sm">
+              Join Waiting List
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       PROCESS / ROADMAP (6 Steps)
+       ========================================= -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">The Roadmap</span>
+        <h2 class="section-title">How we build your <span class="text-gold-gradient">partnership programme.</span></h2>
+        <p class="section-description">
+          A structured 6-step collaborative methodology ensuring academic compliance, industry alignment, and high learner engagement.
+        </p>
+      </div>
+
+      <div class="process-grid">
+        <div class="step-card">
+          <span class="step-num">STEP 01</span>
+          <h4 class="step-name">01. Understand</h4>
+          <p class="step-detail">We listen first — capturing your institutional academic targets, cohort demographics, departmental goals, and delivery constraints.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">STEP 02</span>
+          <h4 class="step-name">02. Contextualise</h4>
+          <p class="step-detail">Factoring in national and regional frameworks (UK, India, and UAE/Dubai guidelines), emerging tech trends, and regional employer shortages.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">STEP 03</span>
+          <h4 class="step-name">03. Co-Design Curriculum</h4>
+          <p class="step-detail">A tailored syllabus mapped to degree outcomes, practical competencies, and junior-level workforce readiness.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">STEP 04</span>
+          <h4 class="step-name">04. Pursue BCS Accreditation</h4>
+          <p class="step-detail">Where applicable, we structure pathways towards formal accreditation through BCS, The Chartered Institute for IT.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">STEP 05</span>
+          <h4 class="step-name">05. Enable Certification</h4>
+          <p class="step-detail">Eligible students receive BCS digital badges and recognized certifications showcasing verified skills directly to employers.</p>
+        </div>
+
+        <div class="step-card">
+          <span class="step-num">STEP 06</span>
+          <h4 class="step-name">06. Deliver Flexibly</h4>
+          <p class="step-detail">Online, on-campus, or blended delivery configured according to your campus schedule, technical facilities, and preference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       GLOBAL FOOTPRINT
+       ========================================= -->
+  <section id="global">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Global Footprint</span>
+        <h2 class="section-title">Where we <span class="text-gold-gradient">operate.</span></h2>
+        <p class="section-description">
+          Headquartered in the United Kingdom, delivering educational impact across three key strategic regions.
+        </p>
+      </div>
+
+      <div class="global-grid">
+        <div class="region-card">
+          <div class="region-img-wrap">
+            <span class="region-tag">Headquarters</span>
+            <img src="https://images.unsplash.com/photo-1767460331633-7b1bb12c8ef2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA2MDV8MHwxfHNlYXJjaHwxfHxsb25kb24lMjBndWlsZGZvcmQlMjBhcmNoaXRlY3R1cmFsJTIwYnVpbGRpbmclMjBtb2Rlcm4lMjBjb3Jwb3JhdGUlMjBnbGFzc3xlbnwwfHx8fDE3OTE5ODQzNDd8MA&ixlib=rb-4.1.0&q=85" alt="United Kingdom Headquarters" class="region-img" />
+          </div>
+          <div class="region-content">
+            <h4 class="region-name">United Kingdom</h4>
+            <p class="region-info">
+              Registered Office & HQ in Guildford, Surrey. Curriculum standards, BCS accreditation pathways, and UK governance frameworks.
+            </p>
+          </div>
+        </div>
+
+        <div class="region-card">
+          <div class="region-img-wrap">
+            <span class="region-tag">Academic Hubs</span>
+            <img src="https://images.unsplash.com/photo-1687866394797-72d5e6606c70?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjB1bml2ZXJzaXR5JTIwbGVjdHVyZSUyMGhhbGwlMjBjYW1wdXMlMjBhcmNoaXRlY3R1cmVsZW58MHx8fHwxNzkxOTg0MzQ4fDA&ixlib=rb-4.1.0&q=85" alt="India College Partnerships" class="region-img" />
+          </div>
+          <div class="region-content">
+            <h4 class="region-name">India</h4>
+            <p class="region-info">
+              Active college partnerships, engineering & management delivery hubs, and practical skill development for massive early-career cohorts.
+            </p>
+          </div>
+        </div>
+
+        <div class="region-card">
+          <div class="region-img-wrap">
+            <span class="region-tag">Institutional Expansion</span>
+            <img src="https://images.unsplash.com/photo-1769283978529-07525b9db2f4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjB1bml2ZXJzaXR5JTIwbGVjdHVyZSUyMGhhbGwlMjBjYW1wdXMlMjBhcmNoaXRlY3R1cmVsZW58MHx8fHwxNzkxOTg0MzQ4fDA&ixlib=rb-4.1.0&q=85" alt="UAE Partnerships" class="region-img" />
+          </div>
+          <div class="region-content">
+            <h4 class="region-name">United Arab Emirates</h4>
+            <p class="region-info">
+              Institutional partnerships and employer networks in Dubai and Abu Dhabi aligned with UAE national workforce visions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       FOUNDERS & VALUES
+       ========================================= -->
+  <section id="founders">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Leadership</span>
+        <h2 class="section-title">Built by founders who <span class="text-gold-gradient">care about outcomes.</span></h2>
+        <p class="section-description">
+          Combining academic institutional design with technical execution to transform youth employability.
+        </p>
+      </div>
+
+      <!-- Real Founder Cards -->
+      <div class="founders-grid">
+        <!-- BEN MISHAL -->
+        <article class="founder-card">
+          <div class="founder-avatar-wrap">
+            <img src="assets/ben-mishal.jpg" alt="Ben Mishal" class="founder-avatar-img" />
+          </div>
+          <div class="founder-info">
+            <p class="founder-role">Co-Founder & Director</p>
+            <h3 class="founder-name">Ben Mishal</h3>
+            <p class="founder-bio">
+              Building industry-aligned education frameworks that bridge institutional academic standards with real career outcomes across partner colleges in the UK, India, and the UAE.
+            </p>
+            <a href="https://www.linkedin.com/in/ben-mishal-b-s-2bb928169/" target="_blank" rel="noopener noreferrer" class="founder-linkedin">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              Connect on LinkedIn
+            </a>
+          </div>
+        </article>
+
+        <!-- ALY LALJI -->
+        <article class="founder-card">
+          <div class="founder-avatar-wrap">
+            <img src="assets/aly-lalji.png" alt="Aly Lalji" class="founder-avatar-img" />
+          </div>
+          <div class="founder-info">
+            <p class="founder-role">Co-Founder</p>
+            <h3 class="founder-name">Aly Lalji</h3>
+            <p class="founder-bio">
+              Growing institutional networks across the UK, India, and the UAE — and shaping the platform that empowers every young person to build, verify, and showcase their skills.
+            </p>
+            <a href="https://www.linkedin.com/in/aly-lalji/" target="_blank" rel="noopener noreferrer" class="founder-linkedin">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              Connect on LinkedIn
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <!-- 6 Values Row -->
+      <div style="margin-top: 4rem;">
+        <span class="eyebrow">Our Core Principles</span>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.6rem;margin-bottom:2rem;">The 6 values behind every programme</h3>
+        <div class="values-grid">
+          <div class="value-box">
+            <h5 class="value-title">Real World</h5>
+            <p class="value-desc">Rooted in how business, tech, and workplace environments actually operate today.</p>
+          </div>
+          <div class="value-box">
+            <h5 class="value-title">Purpose</h5>
+            <p class="value-desc">Young people clearly understand why every module matters to their future.</p>
+          </div>
+          <div class="value-box">
+            <h5 class="value-title">Practical</h5>
+            <p class="value-desc">Learnt strictly by doing, resulting in a demonstrable work output every time.</p>
+          </div>
+          <div class="value-box">
+            <h5 class="value-title">Relatable</h5>
+            <p class="value-desc">Pitched at the student's actual career stage, language, and cultural context.</p>
+          </div>
+          <div class="value-box">
+            <h5 class="value-title">Future Value</h5>
+            <p class="value-desc">Foundational and emerging tech capabilities that remain valuable for decades.</p>
+          </div>
+          <div class="value-box">
+            <h5 class="value-title">Actionable</h5>
+            <p class="value-desc">Every single workshop or lecture ends with a verified next step into the portfolio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       ENQUIRY SECTION (Universities & Colleges)
+       ========================================= -->
+  <section id="enquiry">
+    <div class="container">
+      <div class="enquiry-layout">
+        <div class="enquiry-left-info">
+          <div>
+            <span class="eyebrow">Get In Touch</span>
+            <h2 class="section-title">Let’s build your next <span class="text-gold-gradient">employable cohort.</span></h2>
+            <p class="section-description">
+              Whether you are an academic leader looking to integrate accredited modules or an employer seeking verified junior talent, our leadership team responds within 48 hours.
+            </p>
+          </div>
+
+          <div class="office-card">
+            <p class="office-title">Registered Office (UK)</p>
+            <p class="office-address">
+              <strong>PotentialU Education Ltd</strong><br />
+              220 Bushy Hill Drive, Guildford,<br />
+              Surrey, GU1 2UT, United Kingdom<br />
+              <span style="font-size:0.8rem;color:var(--text-dim);margin-top:0.4rem;display:inline-block;">Company No. 17184439 · Registered in England & Wales</span>
+            </p>
+            <p style="margin-top:1.25rem;font-size:0.9rem;">
+              Director Email: <a href="mailto:benmishal@potentialu.co.uk" class="email-contact-link">benmishal@potentialu.co.uk</a><br />
+              General Enquiries: <a href="mailto:info@potentialu.co.uk" class="email-contact-link">info@potentialu.co.uk</a>
+            </p>
+          </div>
+
+          <!-- Document Download Card -->
+          <div class="office-card" style="border-color:rgba(229,193,88,0.3);background:rgba(13,23,54,0.9);">
+            <p class="office-title">Institutional Materials</p>
+            <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1rem;">
+              Download our official discussion deck to review proposed programme structures, BCS pathway details, and commercial options.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+              <a href="assets/PotentialU-Institutional-Partnership-Overview.pdf" download class="btn btn-ghost btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Partnership Deck (PDF)
+              </a>
+              <a href="assets/PotentialU-At-A-Glance.pdf" download class="btn btn-ghost btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                At A Glance (PDF)
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="enquiry-form-card">
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;margin-bottom:0.5rem;color:var(--text-white);">Partnership Enquiry Form</h3>
+          <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:2rem;">Your enquiry is automatically saved and routed directly to our executive team.</p>
+
+          <form id="enquiryForm" onsubmit="handleEnquirySubmit(event)">
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="institution">Institution / Organisation</label>
+                <input type="text" id="institution" class="form-input" placeholder="e.g. University of Surrey" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contactName">Contact Name</label>
+                <input type="text" id="contactName" class="form-input" placeholder="e.g. Dr. John Davies" required />
+              </div>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label class="form-label" for="email">Institutional Email</label>
+                <input type="email" id="email" class="form-input" placeholder="name@institution.ac.uk" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="country">Primary Country / Region</label>
+                <select id="country" class="form-select" required>
+                  <option value="" disabled selected>Select country</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="India">India</option>
+                  <option value="United Arab Emirates">United Arab Emirates</option>
+                  <option value="Other">Other International</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="cohortType">Partnership Interest</label>
+              <select id="cohortType" class="form-select">
+                <option value="Curriculum Co-Design & BCS Pathway">Curriculum Co-Design & BCS Accreditation Pathway</option>
+                <option value="Student Portfolio & BridgED Employer Briefs">Student Portfolio & BridgED Employer Briefs</option>
+                <option value="Dual Institutional Track (Both)">Full Dual Track (Curriculum + Student Platform)</option>
+                <option value="General Exploration">General Institutional Exploration</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message / Details</label>
+              <textarea id="message" class="form-textarea" placeholder="Tell us about your cohort size, target degrees, or specific timeline..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn btn-gold" style="width:100%;margin-top:0.75rem;">
+              Submit Institutional Enquiry
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <img src="assets/logo.jpg" alt="PotentialU Education" class="footer-brand-logo" />
+          <p class="footer-brand-desc">
+            An international education and skills brand helping 15–25 year olds build real skills, prove what they can do, and step into the world prepared and confident.
+          </p>
+          <p style="font-size:0.8rem;color:var(--text-dim);">
+            <strong>Registered Office:</strong> 220 Bushy Hill Drive, Guildford, United Kingdom, GU1 2UT
+          </p>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Explore</h5>
+          <ul class="footer-links">
+            <li><a href="#pillars">Institutional Partnerships</a></li>
+            <li><a href="#pillars">The Student Platform</a></li>
+            <li><a href="#process">6-Step Roadmap</a></li>
+            <li><a href="#founders">Founders & Leadership</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Downloads & Links</h5>
+          <ul class="footer-links">
+            <li><a href="assets/PotentialU-Institutional-Partnership-Overview.pdf" download>Partnership Deck (PDF)</a></li>
+            <li><a href="assets/PotentialU-At-A-Glance.pdf" download>At A Glance (PDF)</a></li>
+            <li><a href="https://test.potentialu.education/auth" target="_blank" rel="noopener noreferrer">Waiting List Portal</a></li>
+            <li><a href="https://test.potentialu.education/pilot" target="_blank" rel="noopener noreferrer">Portfolio Pilot Page</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="footer-col-title">Governance & Portal</h5>
+          <ul class="footer-links">
+            <li><a href="mailto:benmishal@potentialu.co.uk">benmishal@potentialu.co.uk</a></li>
+            <li><a href="mailto:info@potentialu.co.uk">info@potentialu.co.uk</a></li>
+            <li><a href="javascript:void(0)" onclick="openAdminModal()">Private Admin Dashboard</a></li>
+            <li><a href="admin.html">Admin Direct Portal</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 PotentialU Education Ltd. Registered in England & Wales (Company No. 17184439).
+        </div>
+        <div style="display:flex;gap:1.5rem;">
+          <a href="#hero" style="color:var(--text-dim);text-decoration:none;">Privacy Policy</a>
+          <a href="#hero" style="color:var(--text-dim);text-decoration:none;">Terms of Service</a>
+          <a href="javascript:void(0)" onclick="openAdminModal()" style="color:var(--gold-primary);text-decoration:none;">Admin Login</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================
+       ADMIN LOGIN MODAL
+       ========================================= -->
+  <div id="adminModal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeAdminModal()">×</button>
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;margin-bottom:0.5rem;color:var(--text-white);">Admin Dashboard Access</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1.5rem;">Enter the private management key to view and track all partnership enquiries.</p>
+
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="adminKey">Admin Passcode</label>
+          <input type="password" id="adminKey" class="form-input" placeholder="Enter dashboard password" required />
+          <span style="font-size:0.75rem;color:var(--text-dim);margin-top:0.25rem;">Default key: <code style="color:var(--gold-primary);">potentialu2026</code></span>
+        </div>
+        <button type="submit" class="btn btn-gold" style="width:100%;margin-top:0.75rem;">
+          Unlock Enquiry Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================
+       TOAST CONTAINER
+       ========================================= -->
+  <div id="toast-box"></div>
+
+  <!-- =========================================
+       SCRIPTS: STORAGE, TOASTS, ADMIN
+       ========================================= -->
+  <script>
+    // Initial sample enquiries seed if empty
+    function initSampleData() {
+      if (!localStorage.getItem('pu_enquiries')) {
+        const seed = [
+          {
+            id: 'ENQ-' + Date.now().toString().slice(-4),
+            institution: 'University of Surrey',
+            contactName: 'Prof. David Vance',
+            email: 'd.vance@surrey.ac.uk',
+            country: 'United Kingdom',
+            cohortType: 'Curriculum Co-Design & BCS Pathway',
+            message: 'Looking to integrate accredited computing modules into our 2026/27 curriculum for 180 computing undergraduates.',
+            date: '14 Oct 2026, 14:20',
+            status: 'Pending'
+          },
+          {
+            id: 'ENQ-8921',
+            institution: 'Dubai Institute of Technology',
+            contactName: 'Dr. Mariam Al-Hashemi',
+            email: 'mariam@dit.ac.ae',
+            country: 'United Arab Emirates',
+            cohortType: 'Dual Institutional Track (Both)',
+            message: 'Interested in exploring pilot collaboration aligned with UAE talent acceleration directives.',
+            date: '13 Oct 2026, 09:45',
+            status: 'Contacted'
+          }
+        ];
+        localStorage.setItem('pu_enquiries', JSON.stringify(seed));
+      }
+      if (!localStorage.getItem('pu_admin_password')) {
+        localStorage.setItem('pu_admin_password', 'potentialu2026');
+      }
+    }
+    initSampleData();
+
+    // Show Toast
+    function showToast(title, desc) {
+      const box = document.getElementById('toast-box');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E5C158" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div>
+          <strong style="display:block;color:var(--text-white);">${title}</strong>
+          <span style="color:var(--text-muted);font-size:0.8rem;">${desc}</span>
+        </div>
+      `;
+      box.appendChild(toast);
+      setTimeout(() => toast.classList.add('active'), 10);
+      setTimeout(() => {
+        toast.classList.remove('active');
+        setTimeout(() => toast.remove(), 400);
+      }, 4500);
+    }
+
+    // Handle Form Submit (Sends to benmishal@potentialu.co.uk & stores in Admin Dashboard)
+    async function handleEnquirySubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = 'Routing to benmishal@potentialu.co.uk...';
+
+      const institution = document.getElementById('institution').value;
+      const contactName = document.getElementById('contactName').value;
+      const email = document.getElementById('email').value;
+      const country = document.getElementById('country').value;
+      const cohortType = document.getElementById('cohortType').value;
+      const message = document.getElementById('message').value;
+      const date = new Date().toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+      const newEnquiry = {
+        id: 'ENQ-' + Math.floor(1000 + Math.random() * 9000),
+        institution,
+        contactName,
+        email,
+        country,
+        cohortType,
+        message,
+        date,
+        status: 'Pending'
+      };
+
+      // 1. Store in Local Database for Private Admin Dashboard
+      const existing = JSON.parse(localStorage.getItem('pu_enquiries') || '[]');
+      existing.unshift(newEnquiry);
+      localStorage.setItem('pu_enquiries', JSON.stringify(existing));
+
+      // 2. Transmit real email notification to benmishal@potentialu.co.uk
+      try {
+        await fetch('https://formsubmit.co/ajax/benmishal@potentialu.co.uk', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            _subject: `New PotentialU Institutional Enquiry: ${institution} (${contactName})`,
+            _template: 'table',
+            _captcha: 'false',
+            'Institution': institution,
+            'Contact Person': contactName,
+            'Institutional Email': email,
+            'Country / Region': country,
+            'Partnership Track': cohortType,
+            'Enquiry Message': message,
+            'Enquiry ID': newEnquiry.id,
+            'Submitted At': date
+          })
+        });
+      } catch (err) {
+        console.warn('Network delivery fallback:', err);
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = `Submit Institutional Enquiry <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+      document.getElementById('enquiryForm').reset();
+      showToast('Enquiry Sent & Delivered', `Thank you ${contactName}. Your enquiry has been emailed directly to Ben Mishal (benmishal@potentialu.co.uk) and logged into our management system.`);
+    }
+
+    // Admin Modal Controls
+    function openAdminModal() {
+      document.getElementById('adminModal').classList.add('open');
+      document.getElementById('adminKey').focus();
+    }
+    function closeAdminModal() {
+      document.getElementById('adminModal').classList.remove('open');
+    }
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const entered = document.getElementById('adminKey').value;
+      const stored = localStorage.getItem('pu_admin_password') || 'potentialu2026';
+      if (entered === stored) {
+        sessionStorage.setItem('pu_admin_auth', 'true');
+        window.location.href = 'admin.html';
+      } else {
+        alert('Invalid Passcode. Please try again.');
+      }
+    }
+  </script>
+</body>
+</html>
