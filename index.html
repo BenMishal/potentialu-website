@@ -1049,6 +1049,7 @@
 
       <ul class="nav-links">
         <li><a href="#hero">Overview</a></li>
+        <li><a href="#video-overview">Watch Video</a></li>
         <li><a href="#pillars">What We Do</a></li>
         <li><a href="#process">Partnership</a></li>
         <li><a href="#global">Global</a></li>
@@ -1097,6 +1098,10 @@
         <a href="#enquiry" class="btn btn-gold">
           Explore Institutional Partnership
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#video-overview" class="btn btn-ghost" style="border-color:var(--gold-primary);color:var(--gold-primary);">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Watch Overview Video
         </a>
         <a href="https://test.potentialu.education/auth" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
           Student Waiting List
@@ -1156,6 +1161,50 @@
       <div class="marquee-item">Ages 15–25 <span class="marquee-dot">·</span></div>
     </div>
   </div>
+
+  <!-- =========================================
+       OFFICIAL VIDEO OVERVIEW
+       ========================================= -->
+  <section id="video-overview" style="background: var(--bg-card); border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border); padding: 6rem 0;">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin: 0 auto 3rem auto;">
+        <span class="eyebrow" style="justify-content: center;">Official Overview Video</span>
+        <h2 class="section-title">See PotentialU in <span class="text-gold-gradient">action.</span></h2>
+        <p class="section-description" style="margin: 0 auto; max-width: 40rem;">
+          Discover how our dual-track model bridges higher education curricula with verified employer outcomes across the UK, India, and the UAE.
+        </p>
+      </div>
+
+      <!-- Video Player Frame -->
+      <div style="max-width: 58rem; margin: 0 auto; position: relative; border-radius: 1.5rem; overflow: hidden; border: 1px solid var(--gold-primary); box-shadow: 0 0 60px rgba(229, 193, 88, 0.15), 0 25px 60px rgba(0,0,0,0.8); background: #000;">
+        <video 
+          id="overviewPlayer"
+          controls 
+          playsinline 
+          preload="metadata"
+          poster="assets/logo.jpg"
+          style="width: 100%; display: block; aspect-ratio: 16 / 9; object-fit: contain; background: #050914;">
+          <source src="assets/potentialu-overview.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Quick Action Buttons Below Video -->
+      <div style="margin-top: 2.5rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; align-items: center;">
+        <a href="#enquiry" class="btn btn-gold btn-sm">
+          Discuss an Institutional Partnership
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="assets/PotentialU-Institutional-Partnership-Overview.pdf" download class="btn btn-ghost btn-sm">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Partnership Deck (PDF)
+        </a>
+        <a href="https://test.potentialu.education/auth" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+          Student Waiting List
+        </a>
+      </div>
+    </div>
+  </section>
 
   <!-- =========================================
        WHAT WE DO (Two Pillars)
