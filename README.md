@@ -5,7 +5,7 @@ Official institutional website for **PotentialU Education Ltd**, bridging univer
 - **Primary Domain:** [potentialu.co.uk](https://potentialu.co.uk)
 - **Registered Office:** 220 Bushy Hill Drive, Guildford, Surrey, GU1 2UT, United Kingdom
 - **Company Registration:** England & Wales (No. 17184439)
-- **Founders:** Ben Mishal (Co-Founder & Director) · Aly Lalji (Co-Founder)
+- **Founders:** Aly Lalji (Co-Founder & Director of UK) · Ben Mishal (Co-Founder & Director of India)
 
 ---
 
