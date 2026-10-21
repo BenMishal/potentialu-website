@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07112d" />
+      <stop offset="100%" stop-color="#02050e" />
+    </linearGradient>
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fce99f" />
+      <stop offset="50%" stop-color="#e5c158" />
+      <stop offset="100%" stop-color="#b08a28" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="512" height="512" rx="112" fill="url(#bg-grad)" stroke="#e5c158" stroke-width="12" />
+
+  <!-- U Monogram & Geometry -->
+  <!-- Left Stem (Crisp White) -->
+  <rect x="136" y="132" width="48" height="170" rx="24" fill="#ffffff" />
+  
+  <!-- Right Stem (Rich Gold) -->
+  <rect x="328" y="132" width="48" height="170" rx="24" fill="url(#gold-grad)" />
+
+  <!-- Connecting Curve at Bottom -->
+  <path d="M 136 270 C 136 385, 376 385, 376 270" fill="none" stroke="url(#gold-grad)" stroke-width="48" stroke-linecap="round" />
+
+  <!-- Center Diamond / Tech Star Motif (Cyan Accent) -->
+  <polygon points="384,104 394,124 414,134 394,144 384,164 374,144 354,134 374,124" fill="#38bdf8" filter="url(#glow)" />
+</svg>

@@ -2,20 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://potentialu.co.uk/</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://potentialu.co.uk/assets/PotentialU-Institutional-Partnership-Overview.pdf</loc>
-    <lastmod>2026-10-14</lastmod>
+    <loc>https://potentialu.co.uk/schools</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://potentialu.co.uk/bcs-tech10</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://potentialu.co.uk/students</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://potentialu.co.uk/about</loc>
+    <lastmod>2026-10-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://potentialu.co.uk/assets/PotentialU-At-A-Glance.pdf</loc>
-    <lastmod>2026-10-14</lastmod>
-    <changefreq>monthly</changefreq>
+    <loc>https://potentialu.co.uk/contact</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://potentialu.co.uk/assets/PotentialU-Institutional-Partnership-Overview.pdf</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://potentialu.co.uk/assets/PotentialU-At-A-Glance.pdf</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
