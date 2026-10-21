@@ -53,43 +53,41 @@
 <body>
 
   <!-- Navigation -->
-  <nav id="navbar">
+    <header id="navbar">
     <div class="nav-inner">
-      <a href="/" class="nav-brand">
-        <img src="/assets/logo.jpg" alt="PotentialU Education Logo" class="nav-logo-img" />
-        <span class="nav-brand-text">PotentialU</span>
+      <a href="/" class="nav-brand" title="PotentialU Education">
+        <img src="/assets/logo.jpg" alt="PotentialU Education" class="nav-logo-img" />
       </a>
 
       <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/schools">Schools & Colleges</a></li>
-        <li><a href="/bcs-tech10">BCS Tech10 & Industry</a></li>
-        <li><a href="/students">Student Platform</a></li>
-        <li><a href="/about">About Us</a></li>
+        <li><a href="/schools" class="">Schools</a></li>
+        <li><a href="/bcs-tech10" class="">BCS Tech10</a></li>
+        <li><a href="/students" class="">Students</a></li>
+        <li><a href="/about" class="">About</a></li>
         <li><a href="/contact" class="active">Contact</a></li>
       </ul>
 
       <div class="nav-actions">
-        <a href="#contact-hub" class="btn btn-gold btn-sm">Direct Enquiry</a>
-        <button id="mobile-menu-btn" class="mobile-toggle" aria-label="Toggle menu">
+        <a href="/contact" class="btn btn-gold btn-sm">Partner With Us</a>
+        <button id="mobile-menu-btn" class="mobile-toggle" aria-label="Toggle navigation menu">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
-  </nav>
+  </header>
 
   <!-- Mobile Drawer -->
-  <div id="mobile-drawer" class="mobile-drawer">
+    <div id="mobile-drawer" class="mobile-drawer">
     <a href="/" class="mobile-link">Home</a>
-    <a href="/schools" class="mobile-link">Schools & Colleges</a>
-    <a href="/bcs-tech10" class="mobile-link">BCS Tech10 & Industry</a>
-    <a href="/students" class="mobile-link">Student Platform</a>
-    <a href="/about" class="mobile-link">About Us</a>
-    <a href="/contact" class="mobile-link active" style="color:var(--gold-primary);">Contact</a>
-    <div style="margin-top:2rem;">
-      <a href="#contact-hub" class="btn btn-gold" style="width:100%;text-align:center;">Direct Enquiry</a>
+    <a href="/schools" class="mobile-link ">Schools & Colleges</a>
+    <a href="/bcs-tech10" class="mobile-link ">BCS Tech10 & Industry</a>
+    <a href="/students" class="mobile-link ">Student Platform</a>
+    <a href="/about" class="mobile-link ">About Us</a>
+    <a href="/contact" class="mobile-link active">Contact</a>
+    <div style="margin-top:1.5rem;">
+      <a href="/contact" class="btn btn-gold" style="width:100%;text-align:center;">Partner With Us</a>
     </div>
-  </div>
+  </div>v>
 
   <!-- Subpage Hero -->
   <header class="subpage-hero">
@@ -357,5 +355,47 @@
       submitBtn.textContent = 'Message Sent Successfully';
     });
   </script>
+
+  <script>
+    // Header Glassmorphism Scroll Effect
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (nav) {
+        if (window.scrollY > 20) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }
+    }, { passive: true });
+
+    // Animated Mobile Toggle
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const drawer = document.getElementById('mobile-drawer');
+    if (menuBtn && drawer) {
+      menuBtn.addEventListener('click', () => {
+        menuBtn.classList.toggle('active');
+        drawer.classList.toggle('open');
+      });
+    }
+
+    // Snappy Scroll-Reveal Observer
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.pillar-card, .step-card, .region-card, .highlight-box, .competency-card, .founder-card, .section-header').forEach(el => {
+        el.classList.add('reveal');
+        observer.observe(el);
+      });
+    }
+  </script>
+
 </body>
 </html>
